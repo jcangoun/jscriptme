@@ -112,6 +112,7 @@ window.onload = function() {
                     //         </div>
                     //     </div>
                     // </article>
+                   
 
                 // exemple code javascript pour la generation des elements html ----------------->
                      // var articleBloc = document.createElement('article');

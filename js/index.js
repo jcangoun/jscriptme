@@ -9,18 +9,38 @@ window.addEventListener = function() {
 
 var connectionBut = document.getElementsByClassName("square-button-empty");
 
-    console.log("square-button-empty");
+    console.log("square-button-empty");                                               
 
     var connectForm      = document.querySelector("#connexion-form");
 
 
     var inscriptForm    = document.querySelector("#register-form");
 
+ /*   const buttons        
+const connexionForms 
+const inscriptionForm
+*/
 
     connectionBut.addEventListener(function() {
         document.getElementsByClassName("square-button-empty[1]").style = ("display", "none");
     })
 
+
+for (let i = 0; i < buttons.length; i++) {
+        
+            buttons[i].addEventListener("click", function(e){
+            e.preventDefault();
+
+                if (e.target.getAttribute("data-button")=="0"){
+                connectForm.style.display = "none";
+                inscriptForm.style.display = "flex";
+                }
+                else if(e.target.getAttribute("data-button")=="1"){
+                inscriptForm.style.display = "none";
+                connectForm.style.display = "flex";
+                }
+            })
+        }
 
 
 
@@ -48,6 +68,12 @@ var connectionBut = document.getElementsByClassName("square-button-empty");
                 // console.log('Bonjour ' + user.getUsername() + ' !');
 
 
+const user = new User('jc (username)', 'jcangounou@hotmail.fr (email)', '747200 (password)';
+
+    // Pour verifier le succès de la démarche je fais le console.log :
+
+    console.log('Voici vos infos persos' + user.getusername() + 'voila');
+
             // 2. Modifier ensuite le code ci dessus pour qu'a l'instantation d'un nouvelle 'User' ---
             // --> on utilise les données saisie du formulaire d'inscription pour setup les propriétés notre nouvelle 'User'
             // puis on stocke ce nouvelle objet utilisateurs dans le 'localStorage' sous la clé 'user'
@@ -66,6 +92,92 @@ var connectionBut = document.getElementsByClassName("square-button-empty");
                     // 1.2.1 si l'email ou le mot de passe ne correspondent pas, retourner un message d'erreur (les alert() sont proscrit)
 
             // 2. Si les données saisies correspondent a celles présentes dans le 'localStorage', rediriger l'utilisateur sur la page 'home.html'
+
+
+
+//Je n 'ai plus le temps donc je place en copie collé les codes que j'avais fait avec l'aide de abdel...   :
+
+
+        for (let i = 0; i < buttons.length; i++) {
+        
+            buttons[i].addEventListener("click", function(e){
+            e.preventDefault();
+
+                if (e.target.getAttribute("data-button")=="0"){
+                connexionForms.style.display = "none";
+                inscriptionForms.style.display = "flex";
+                }
+                else if(e.target.getAttribute("data-button")=="1"){
+                inscriptionForms.style.display = "none";
+                connexionForms.style.display = "flex";
+                }
+            })
+        }
+            
+        const logInButton  = document.querySelector("#logIn");
+        const signUpButton = document.querySelector("#signUp");
+        
+        logInButton.addEventListener("click", function(e){
+        e.preventDefault();
+        
+            let connexionForm = document.getElementById("connexion-form"); // pour les form on peux directement cibler les imputs
+            let email     = connexionForm[0].value;
+            let password  = connexionForm[1].value;
+        
+            let user = localStorage.getItem("user");
+                user = JSON.parse(user);
+                
+            if (user != null) {
+                if(email == user.email && password == user.password){
+                    document.location.href="home.html";
+                }
+                else{
+                showAlert("Account do not exist, please register.")
+                }
+            }
+        })
+
+        signUpButton.addEventListener("click", function(e){
+            e.preventDefault();
+
+            let registerForm = document.getElementById("register-form");
+            let username = registerForm[0].value;
+            let email    = registerForm[1].value;
+            let password = registerForm[3].value;
+            let passC    = registerForm[3].value;
+
+            let error    = false;
+
+            let usernameStatus = checkUserName(username);
+            if(!usernameStatus){
+                showAlert("l'username doit comporter au moin 5 caracteres");
+                error = true;
+            }
+
+            let passStatus = checkPass(password);
+            if(!passStatus){
+                showAlert("une maj une min integer 8cara");
+                 error = true;
+            }
+            if (password !== passC){
+                showAlert("mdp different");
+                 error = true;
+            }
+
+
+            // if(error == false)
+            // {
+
+            // }
+            
+            var user = new User(username, email , password);
+            console.log(user);
+            
+            localStorage.setItem("user", JSON.stringify(user));  // linverse de stringify c'est JSON.parse(user)
+           
+
+        })
+
 
 
 }
