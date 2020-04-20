@@ -97,22 +97,6 @@ const user = new User('jc (username)', 'jcangounou@hotmail.fr (email)', '747200 
 
 //Je n 'ai plus le temps donc je place en copie collé les codes que j'avais fait avec l'aide de abdel...   :
 
-
-        for (let i = 0; i < buttons.length; i++) {
-        
-            buttons[i].addEventListener("click", function(e){
-            e.preventDefault();
-
-                if (e.target.getAttribute("data-button")=="0"){
-                connexionForms.style.display = "none";
-                inscriptionForms.style.display = "flex";
-                }
-                else if(e.target.getAttribute("data-button")=="1"){
-                inscriptionForms.style.display = "none";
-                connexionForms.style.display = "flex";
-                }
-            })
-        }
             
         const logInButton  = document.querySelector("#logIn");
         const signUpButton = document.querySelector("#signUp");
@@ -120,9 +104,9 @@ const user = new User('jc (username)', 'jcangounou@hotmail.fr (email)', '747200 
         logInButton.addEventListener("click", function(e){
         e.preventDefault();
         
-            let connexionForm = document.getElementById("connexion-form"); // pour les form on peux directement cibler les imputs
-            let email     = connexionForm[0].value;
-            let password  = connexionForm[1].value;
+            let connectForm = document.getElementById("connexion-form"); // pour les form on peux directement cibler les imputs
+            let email     = connectForm[0].value;
+            let password  = connectForm[1].value;
         
             let user = localStorage.getItem("user");
                 user = JSON.parse(user);
